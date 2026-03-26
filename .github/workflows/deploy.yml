@@ -1,0 +1,65 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # ── Deploy Backend ──────────────────────────────
+  deploy-backend:
+    name: Deploy Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host:     ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/petana
+            git pull origin main
+            npm ci --workspace=packages/backend
+            npm run build -w packages/backend
+            npx prisma migrate deploy --prefix packages/backend
+            pm2 restart petana-backend || pm2 start packages/backend/dist/index.js --name petana-backend
+            pm2 save
+            echo "✅ Backend deployed"
+
+  # ── Deploy Frontend ─────────────────────────────
+  deploy-frontend:
+    name: Deploy Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build frontend
+        run: npm run build -w packages/frontend
+        env:
+          VITE_API_URL:         https://api.petana.xyz
+          VITE_WS_URL:          wss://api.petana.xyz
+          VITE_SOLANA_NETWORK:  mainnet-beta
+
+      - name: Upload to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USER }}
+          password:   ${{ secrets.FTP_PASSWORD }}
+          local-dir:  ./packages/frontend/dist/
+          server-dir: /public_html/app/
+          exclude:    |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**

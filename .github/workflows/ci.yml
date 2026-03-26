@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-build:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SDK
+        run: npm run build -w packages/sdk
+
+      - name: Build Backend
+        run: npm run build -w packages/backend
+
+      - name: Build Frontend
+        run: npm run build -w packages/frontend
+        env:
+          VITE_API_URL: https://api.petana.xyz
+          VITE_WS_URL: wss://api.petana.xyz
+          VITE_SOLANA_NETWORK: mainnet-beta
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: lint-and-build
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: petana
+          POSTGRES_PASSWORD: petana_test
+          POSTGRES_DB: petana_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run Prisma migrations
+        working-directory: packages/backend
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://petana:petana_test@localhost:5432/petana_test
+
+      - name: Run tests
+        run: npm test --workspaces --if-present
+        env:
+          DATABASE_URL: postgresql://petana:petana_test@localhost:5432/petana_test
+          REDIS_URL: redis://localhost:6379
+          NODE_ENV: test
