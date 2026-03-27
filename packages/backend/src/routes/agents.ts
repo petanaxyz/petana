@@ -131,15 +131,15 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
       }
 
       const quest = await prisma.quest.create({
-        data: {
-          agentId:  agent.id,
-          type,
-          payload,
-          xpGained: xpGain,
-          hpChange: newHp - currentHp,
-          txHash,
-        },
-      });
+  data: {
+    agentId:  agent.id,
+    type,
+    payload: payload as any,
+    xpGained: xpGain,
+    hpChange: newHp - currentHp,
+    txHash,
+  },
+});
 
       // Broadcast real-time events
       broadcast(agent.ownerWallet, { type: 'hp_update', agentId: agent.id, hp: newHp });
