@@ -7,6 +7,7 @@ import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adap
 import { clusterApiUrl } from '@solana/web3.js';
 import { NavBar } from './components/NavBar';
 import { Dashboard } from './pages/Dashboard';
+import { Demo } from './pages/Demo';
 import { Leaderboard } from './pages/Leaderboard';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
@@ -31,6 +32,7 @@ export default function App() {
               <Routes>
                 <Route path="/app" element={<Dashboard />} />
                 <Route path="/app/leaderboard" element={<Leaderboard />} />
+                <Route path="/demo" element={<Demo />} />
                 <Route path="*" element={<Navigate to="/app" replace />} />
               </Routes>
             </BrowserRouter>
