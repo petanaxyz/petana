@@ -122,7 +122,7 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
           agentId:   agent.id,
           agentName: agent.name,
           type,
-          payload: payload as Record<string, unknown>,
+          payload: payload as unknown as Record<string, unknown>,
           xpGained:  xpGain,
           hpChange:  newHp - currentHp,
         });
