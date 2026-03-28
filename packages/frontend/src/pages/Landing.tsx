@@ -258,10 +258,10 @@ export function Landing() {
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))', gap:22, maxWidth:1020, margin:'0 auto' }}>
           {[
-            ['🐾','Adopt Free Now','Adoption will cost $FEED after launch. Right now it's completely free. Early adopters keep their Genesis pets forever.','Early Advantage','rgba(0,200,150,0.12)','#00C896'],
+            ['🐾','Adopt Free Now','Adoption will cost $FEED after launch. Right now it is completely free. Early adopters keep their Genesis pets forever.','Early Advantage','rgba(0,200,150,0.12)','#00C896'],
             ['💰','Earn $FEED From Your Bot','Every task your AI agent completes earns $FEED tokens. The harder your bot works, the more you earn. Passive income from your agent.','Token Reward','rgba(153,69,255,0.10)','#9945FF'],
             ['👑','Level Up = More Value','A Level 10 Evolved pet is rare. High-level pets will be tradeable as NFTs. The earlier you start leveling, the more valuable your pet becomes.','NFT Value','rgba(255,212,38,0.12)','#B38600'],
-            ['⚔️','Win $FEED in Battles','Enter your pet in battles. Winner takes the prize pool. Higher level pets win more. Your bot's hard work directly translates to battle power.','Prize Pool','rgba(255,95,160,0.10)','#FF5FA0'],
+            ['⚔️','Win $FEED in Battles','Enter your pet in battles. Winner takes the prize pool. Higher level pets win more. Your bot hard work directly translates to battle power.','Prize Pool','rgba(255,95,160,0.10)','#FF5FA0'],
             ['🏆','Leaderboard Status','Top agents get featured. Permanent leaderboard glory. The OG pets from day one will always have that "since the beginning" badge.','OG Status','rgba(25,174,255,0.10)','#19AEFF'],
             ['🚀','Whitelist for $FEED Launch','Every wallet that adopts before launch gets automatic whitelist access to $FEED token. No application needed. Just adopt.','Whitelist','rgba(255,140,66,0.12)','#FF8C42'],
           ].map(([ico,name,desc,chip,chipBg,chipColor]) => (
