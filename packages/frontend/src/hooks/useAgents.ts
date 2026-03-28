@@ -12,16 +12,15 @@ export function useAgents(walletAddress: string | null) {
     queryKey: ['agents', walletAddress],
     queryFn: async () => {
       if (!walletAddress) return [];
-      const res = await fetch(`${API_URL}/agents/${walletAddress}`);
+      const res = await fetch(`${API_URL}/wallet/${walletAddress}/agents`);
       if (!res.ok) throw new Error('Failed to fetch agents');
       return res.json();
     },
     enabled: !!walletAddress,
-    refetchInterval: 30_000, // refetch every 30s as fallback
+    refetchInterval: 30_000,
     staleTime: 10_000,
   });
 
-  // Sync to Zustand store
   useEffect(() => {
     if (query.data) setAgents(query.data);
   }, [query.data, setAgents]);

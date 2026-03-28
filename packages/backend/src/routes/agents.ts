@@ -61,12 +61,12 @@ async function processTask(agent: any, type: string, payload: Record<string, unk
 
 export async function agentRoutes(server: FastifyInstance): Promise<void> {
 
-  server.get<{ Params: { walletAddress: string } }>('/agents/:walletAddress', async (req, reply) => {
-    const agents = await prisma.agent.findMany({ where: { ownerWallet: req.params.walletAddress }, orderBy: { createdAt: 'desc' } });
-    return reply.send(agents.map(a => ({
-      ...a, hp: calculateCurrentHp(a), status: getAgentStatus(calculateCurrentHp(a)),
-      xpToNextLevel: (() => { const l = calculateLevel(a.xp); if (l >= 10) return 0; return [0,100,250,500,850,1300,1900,2700,3700,5000][l] - a.xp; })()
-    })));
+  server.post('/agents', async (req, reply) => {
+    const result = AgentSchema.safeParse(req.body);
+    if (!result.success) return reply.code(400).send({ error: result.error.issues });
+    const apiKey = generateApiKey();
+    const agent = await prisma.agent.create({ data: { ...result.data, apiKey } });
+    return reply.code(201).send({ ...agent, apiKey });
   });
 
   server.get<{ Params: { id: string } }>('/agents/:id/detail', async (req, reply) => {
@@ -76,12 +76,9 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
     return reply.send({ ...agent, hp, status: getAgentStatus(hp) });
   });
 
-  server.post('/agents', async (req, reply) => {
-    const result = AgentSchema.safeParse(req.body);
-    if (!result.success) return reply.code(400).send({ error: result.error.issues });
-    const apiKey = generateApiKey();
-    const agent = await prisma.agent.create({ data: { ...result.data, apiKey } });
-    return reply.code(201).send({ ...agent, apiKey });
+  server.get<{ Params: { id: string } }>('/agents/:id/quests', async (req, reply) => {
+    const quests = await prisma.quest.findMany({ where: { agentId: req.params.id }, orderBy: { createdAt: 'desc' }, take: 50 });
+    return reply.send(quests);
   });
 
   server.post<{ Params: { id: string } }>('/agents/:id/task', async (req, reply) => {
@@ -92,20 +89,26 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
     return reply.send(await processTask(agent, result.data.type, result.data.payload as Record<string, unknown>));
   });
 
+  server.get<{ Params: { walletAddress: string } }>('/wallet/:walletAddress/agents', async (req, reply) => {
+    const agents = await prisma.agent.findMany({ where: { ownerWallet: req.params.walletAddress }, orderBy: { createdAt: 'desc' } });
+    const XP_T = [0,100,250,500,850,1300,1900,2700,3700,5000];
+    return reply.send(agents.map(a => {
+      const hp = calculateCurrentHp(a);
+      const l = calculateLevel(a.xp);
+      const xpToNextLevel = l >= 10 ? 0 : XP_T[l] - a.xp;
+      return { ...a, hp, status: getAgentStatus(hp), xpToNextLevel };
+    }));
+  });
+
   server.post('/task', async (req, reply) => {
     const apiKey = (req.headers['x-api-key'] as string) || '';
-    if (!apiKey.startsWith('petana_')) return reply.code(401).send({ error: 'Invalid API key. Use X-API-Key header.' });
+    if (!apiKey.startsWith('petana_')) return reply.code(401).send({ error: 'Invalid API key.' });
     const result = TaskSchema.safeParse(req.body);
     if (!result.success) return reply.code(400).send({ error: result.error.issues });
     const agent = await prisma.agent.findFirst({ where: { apiKey } });
-    if (!agent) return reply.code(404).send({ error: 'Agent not found. Check your API key.' });
+    if (!agent) return reply.code(404).send({ error: 'Agent not found.' });
     const data = await processTask(agent, result.data.type, result.data.payload as Record<string, unknown>);
     return reply.send({ success: true, agentId: agent.id, agentName: agent.name, ...data });
-  });
-
-  server.get<{ Params: { id: string }; Querystring: { limit?: string } }>('/agents/:id/quests', async (req, reply) => {
-    const quests = await prisma.quest.findMany({ where: { agentId: req.params.id }, orderBy: { createdAt: 'desc' }, take: Math.min(parseInt(req.query.limit || '50'), 100) });
-    return reply.send(quests);
   });
 
   server.get('/leaderboard', async (_req, reply) => {
