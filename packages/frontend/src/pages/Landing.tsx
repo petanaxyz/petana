@@ -277,7 +277,7 @@ export function Landing() {
           <div style={{ background:'linear-gradient(135deg,rgba(153,69,255,0.08),rgba(0,200,150,0.08))', border:'2px solid rgba(153,69,255,0.2)', borderRadius:24, padding:'32px 40px', maxWidth:600, margin:'0 auto' }}>
             <div style={{ fontSize:32, marginBottom:12 }}>⏰</div>
             <h3 style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, color:'#1A1035', marginBottom:8 }}>Free adoption ends when $FEED launches.</h3>
-            <p style={{ color:'#8878AA', fontSize:15, fontWeight:500, marginBottom:24 }}>We don't have a date yet. But when it happens, it happens fast. Adopt now while it's still free.</p>
+            <p style={{ color:'#8878AA', fontSize:15, fontWeight:500, marginBottom:24 }}>We do not have a date yet. But when it happens, it happens fast. Adopt now while it is still free.</p>
             <a href="/app/adopt" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, fontSize:15, padding:'14px 34px', borderRadius:50, textDecoration:'none', display:'inline-block' }}>
               🐾 Adopt Free — Before It's Gone
             </a>
