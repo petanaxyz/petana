@@ -21,10 +21,16 @@ export function Landing() {
           {[{label:'Docs',href:'#'},{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'$FEED',href:'#'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
             <a key={label} href={href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{label}</a>
           ))}
-          <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-            <a href="https://github.com/petanaxyz" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>⚙️</a>
-            <a href="https://twitter.com/Petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>𝕏</a>
-            <a href="https://t.me/petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>✈️</a>
+          <div style={{ display:'flex', alignItems:'center', gap:16 }}>
+            <a href="https://github.com/petanaxyz" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', display:'flex', alignItems:'center' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/Petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', display:'flex', alignItems:'center' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </a>
+            <a href="https://t.me/petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', display:'flex', alignItems:'center' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+            </a>
           </div>
           <Link to="/app" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, padding:'10px 24px', borderRadius:50, textDecoration:'none', fontSize:14, boxShadow:'0 4px 20px rgba(153,69,255,0.35)' }}>
             Launch App →
