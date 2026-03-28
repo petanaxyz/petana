@@ -7,6 +7,7 @@ export function NavBar() {
   const links = [
     { to: '/app',              label: 'My Pets' },
     { to: '/app/leaderboard',  label: 'Leaderboard' },
+    { to: '/demo',             label: '🎮 Demo' },
     { to: '/app/battle',       label: '⚔️ Battle' },
   ];
 
