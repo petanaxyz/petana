@@ -1,3 +1,4 @@
+import React from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useAgents } from '../hooks/useAgents';
@@ -11,11 +12,21 @@ export function Dashboard() {
   const { publicKey } = useWallet();
   const wallet = publicKey?.toString() || null;
   const navigate = useNavigate();
+  const [dailyClaimed, setDailyClaimed] = React.useState(false);
+  const [showBonus, setShowBonus] = React.useState(false);
 
   const { isLoading, error } = useAgents(wallet);
   useRealtimeFeed(wallet);
 
   const agents = useAgentStore((s) => s.agents);
+
+  React.useEffect(() => {
+    if (wallet) {
+      const lastClaim = localStorage.getItem(`daily_${wallet}`);
+      const today = new Date().toDateString();
+      if (lastClaim === today) setDailyClaimed(true);
+    }
+  }, [wallet]);
 
   // Not connected
   if (!wallet) {
@@ -85,6 +96,34 @@ export function Dashboard() {
           + Adopt Agent
         </button>
       </div>
+
+      {/* Daily Bonus Banner */}
+      {!dailyClaimed && agents.length > 0 && (
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 rounded-2xl p-4 mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🎁</span>
+            <div>
+              <p className="font-bold text-slate-900 text-sm">Daily Bonus Available!</p>
+              <p className="text-xs text-slate-500">Claim your free XP for today — come back every day!</p>
+            </div>
+          </div>
+          <button
+            onClick={async () => {
+              setShowBonus(true);
+              await claimDailyBonus(wallet!, agents, () => {}, setDailyClaimed);
+              setTimeout(() => setShowBonus(false), 2000);
+            }}
+            className="bg-amber-500 text-white font-bold text-sm px-5 py-2 rounded-full hover:bg-amber-600 transition-all flex-shrink-0">
+            {showBonus ? '✅ Claimed!' : '🎁 Claim +10 XP'}
+          </button>
+        </div>
+      )}
+      {dailyClaimed && agents.length > 0 && (
+        <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-3 mb-6 flex items-center gap-3">
+          <span className="text-2xl">✅</span>
+          <p className="text-sm font-bold text-green-700">Daily bonus claimed! Come back tomorrow for more XP.</p>
+        </div>
+      )}
 
       {/* Pet grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">

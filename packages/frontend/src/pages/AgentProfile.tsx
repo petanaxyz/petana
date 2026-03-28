@@ -34,6 +34,24 @@ function timeAgo(date: string) {
   return `${Math.floor(s/3600)}h ago`;
 }
 
+
+async function feedPet(agentId: string, setAgent: any, addNotif: any) {
+  const tasks = ['trade','commit','post','swap'];
+  const type = tasks[Math.floor(Math.random() * tasks.length)];
+  try {
+    const res = await fetch(`${API_URL}/agents/${agentId}/task`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, payload: { manual: true, source: 'dashboard' } })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setAgent((p: any) => p ? { ...p, hp: data.hpAfter, xp: data.agent.xp, level: data.agent.level, status: data.agent.status } : p);
+      addNotif(`🍖 Fed! +${data.xpGained} XP · HP +${Math.round(data.hpAfter - data.hpBefore)}`);
+    }
+  } catch { addNotif('❌ Feed failed!'); }
+}
+
 const XP_THRESHOLDS = [0,100,250,500,850,1300,1900,2700,3700,5000];
 
 function shareToTwitter(agent: any) {
@@ -58,6 +76,8 @@ export function AgentProfile() {
   const [agent, setAgent] = useState<any>(null);
   const [notifs, setNotifs] = useState<{ id: number; text: string }[]>([]);
   const [nid, setNid] = useState(0);
+  const [feeding, setFeeding] = useState(false);
+  const [feedCooldown, setFeedCooldown] = useState(0);
 
   const { data } = useQuery<any>({
     queryKey: ['agent', id],
@@ -148,6 +168,21 @@ export function AgentProfile() {
             </div>
             <p className="text-sm text-slate-400 mb-1">{agent.type} · Level {agent.level}</p>
             <div className="flex gap-2 mt-3 flex-wrap">
+              <button
+                onClick={async () => {
+                  if (feedCooldown > 0 || feeding) return;
+                  setFeeding(true);
+                  await feedPet(agent.id, setAgent, addNotif);
+                  setFeeding(false);
+                  setFeedCooldown(30);
+                  const timer = setInterval(() => {
+                    setFeedCooldown(c => { if (c <= 1) { clearInterval(timer); return 0; } return c - 1; });
+                  }, 1000);
+                }}
+                disabled={feeding || feedCooldown > 0}
+                className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:opacity-90 disabled:opacity-50 transition-all">
+                {feeding ? '🍖 Feeding...' : feedCooldown > 0 ? `⏳ ${feedCooldown}s` : '🍖 Feed Pet'}
+              </button>
               <button onClick={() => shareToTwitter(agent)}
                 className="flex items-center gap-2 bg-black text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-gray-800 transition-all">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
