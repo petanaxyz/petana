@@ -248,6 +248,43 @@ export function Landing() {
         </div>
       </section>
 
+
+      {/* WHY ADOPT */}
+      <section style={{ padding:'100px 24px', background:'#FFF7F0' }}>
+        <div style={{ textAlign:'center', marginBottom:52 }}>
+          <div style={{ fontSize:12, fontWeight:700, letterSpacing:2.5, textTransform:'uppercase', color:'#9945FF', marginBottom:12 }}>💰 Why Adopt?</div>
+          <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800, marginBottom:12 }}>Your Pet = Your Asset</h2>
+          <p style={{ color:'#8878AA', fontSize:16, fontWeight:500, maxWidth:520, margin:'0 auto' }}>Adopting now — before $FEED launches — is the smartest move. Here's why.</p>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))', gap:22, maxWidth:1020, margin:'0 auto' }}>
+          {[
+            ['🐾','Adopt Free Now','Adoption will cost $FEED after launch. Right now it's completely free. Early adopters keep their Genesis pets forever.','Early Advantage','rgba(0,200,150,0.12)','#00C896'],
+            ['💰','Earn $FEED From Your Bot','Every task your AI agent completes earns $FEED tokens. The harder your bot works, the more you earn. Passive income from your agent.','Token Reward','rgba(153,69,255,0.10)','#9945FF'],
+            ['👑','Level Up = More Value','A Level 10 Evolved pet is rare. High-level pets will be tradeable as NFTs. The earlier you start leveling, the more valuable your pet becomes.','NFT Value','rgba(255,212,38,0.12)','#B38600'],
+            ['⚔️','Win $FEED in Battles','Enter your pet in battles. Winner takes the prize pool. Higher level pets win more. Your bot's hard work directly translates to battle power.','Prize Pool','rgba(255,95,160,0.10)','#FF5FA0'],
+            ['🏆','Leaderboard Status','Top agents get featured. Permanent leaderboard glory. The OG pets from day one will always have that "since the beginning" badge.','OG Status','rgba(25,174,255,0.10)','#19AEFF'],
+            ['🚀','Whitelist for $FEED Launch','Every wallet that adopts before launch gets automatic whitelist access to $FEED token. No application needed. Just adopt.','Whitelist','rgba(255,140,66,0.12)','#FF8C42'],
+          ].map(([ico,name,desc,chip,chipBg,chipColor]) => (
+            <div key={name as string} style={{ background:'#fff', border:'2px solid rgba(153,69,255,0.15)', borderRadius:22, padding:30, boxShadow:'0 4px 16px rgba(153,69,255,0.08)' }}>
+              <span style={{ fontSize:38, marginBottom:14, display:'block' }}>{ico}</span>
+              <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:20, fontWeight:800, color:'#1A1035', marginBottom:8 }}>{name}</div>
+              <div style={{ fontSize:14, color:'#8878AA', lineHeight:1.7, fontWeight:500, marginBottom:14 }}>{desc}</div>
+              <span style={{ display:'inline-flex', fontSize:11, fontWeight:700, padding:'4px 14px', borderRadius:20, background:chipBg as string, color:chipColor as string }}>{chip}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:'center', marginTop:52 }}>
+          <div style={{ background:'linear-gradient(135deg,rgba(153,69,255,0.08),rgba(0,200,150,0.08))', border:'2px solid rgba(153,69,255,0.2)', borderRadius:24, padding:'32px 40px', maxWidth:600, margin:'0 auto' }}>
+            <div style={{ fontSize:32, marginBottom:12 }}>⏰</div>
+            <h3 style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, color:'#1A1035', marginBottom:8 }}>Free adoption ends when $FEED launches.</h3>
+            <p style={{ color:'#8878AA', fontSize:15, fontWeight:500, marginBottom:24 }}>We don't have a date yet. But when it happens, it happens fast. Adopt now while it's still free.</p>
+            <a href="/app/adopt" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, fontSize:15, padding:'14px 34px', borderRadius:50, textDecoration:'none', display:'inline-block' }}>
+              🐾 Adopt Free — Before It's Gone
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* SOLANA STRIP */}
       <div style={{ padding:'60px 24px', background:'linear-gradient(135deg,#9945FF 0%,#7B2FFF 40%,#14C880 100%)', position:'relative' }}>
         <div style={{ textAlign:'center', marginBottom:36 }}>
