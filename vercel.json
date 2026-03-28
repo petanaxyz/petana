@@ -1,8 +1,5 @@
 {
-  "rewrites": [
-    { "source": "/app", "destination": "/index.html" },
-    { "source": "/app/(.*)", "destination": "/index.html" },
-    { "source": "/demo", "destination": "/index.html" },
-    { "source": "/leaderboard", "destination": "/index.html" }
+  "routes": [
+    { "src": "/[^.]+", "dest": "/", "status": 200 }
   ]
 }
