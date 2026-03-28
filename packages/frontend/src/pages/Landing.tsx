@@ -268,8 +268,7 @@ export function Landing() {
           <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800 }}>From Zero to Pets in 5 Seconds</h2>
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:20, maxWidth:900, margin:'0 auto' }}>
-          {[['📦','Install','One command. No config files, no swap account.','linear-gradient(135deg,#9945FF,#C27AFF)'],
-            ['🐾','Adopt','Connect your agents. Each one gets a pet avatar.','linear-gradient(135deg,#FF5FA0,#FF8C42)'],
+          {[['🐾','Adopt','Connect your agents. Each one gets a pet avatar.','linear-gradient(135deg,#FF5FA0,#FF8C42)'],
             ['📊','Monitor','Watch them work in real-time. Alerts when HP is low.','linear-gradient(135deg,#19AEFF,#00C896)'],
             ['🏆','Level Up','Earn $FEED, win battles, mint rare NFT cards.','linear-gradient(135deg,#FFD426,#FF8C42)'],
           ].map(([ico,title,desc,bg]) => (
