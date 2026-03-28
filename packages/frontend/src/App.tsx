@@ -13,6 +13,7 @@ import { Leaderboard }  from './pages/Leaderboard';
 import { Battle }       from './pages/Battle';
 import { Adopt }        from './pages/Adopt';
 import { AgentProfile } from './pages/AgentProfile';
+import { Office } from './pages/Office';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 2, staleTime: 10_000 } } });
@@ -33,7 +34,8 @@ export default function App() {
                 <Route path="/app/adopt"          element={<><NavBar /><Adopt /></>} />
                 <Route path="/app/agent/:id"      element={<><NavBar /><AgentProfile /></>} />
                 <Route path="/app/leaderboard"    element={<><NavBar /><Leaderboard /></>} />
-                <Route path="/app/battle"         element={<><NavBar /><Battle /></>} />
+                <Route path="/app/battle" element={<><NavBar /><Battle /></>} />
+                <Route path="/app/office" element={<><NavBar /><Office /></>} />
                 <Route path="/demo"               element={<><NavBar /><Demo /></>} />
                 <Route path="*"                   element={<Navigate to="/" replace />} />
               </Routes>
