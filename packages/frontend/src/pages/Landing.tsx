@@ -15,8 +15,8 @@ export function Landing() {
       <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:100, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'14px 48px', background:'rgba(247,244,255,0.92)', backdropFilter:'blur(20px)', borderBottom:'1.5px solid rgba(153,69,255,0.15)' }}>
         <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, letterSpacing:2, color:'#9945FF' }}>PETANA</div>
         <div style={{ display:'flex', gap:28, alignItems:'center' }}>
-          {['Docs','Agents','Leaderboard','$FEED'].map(l => (
-            <a key={l} href="#" style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{l}</a>
+          {[{label:'Docs',href:'#'},{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'$FEED',href:'#'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
+            <a key={label} href={href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{label}</a>
           ))}
           <Link to="/app" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, padding:'10px 24px', borderRadius:50, textDecoration:'none', fontSize:14, boxShadow:'0 4px 20px rgba(153,69,255,0.35)' }}>
             Launch App →
@@ -181,7 +181,7 @@ export function Landing() {
         <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:20, fontWeight:800, letterSpacing:2, color:'#9945FF' }}>PETANA</div>
         <div style={{ display:'flex', gap:24 }}>
           {['Docs','GitHub','Twitter','Discord','Whitepaper'].map(l => (
-            <a key={l} href="#" style={{ color:'#8878AA', textDecoration:'none', fontSize:13, fontWeight:600 }}>{l}</a>
+            <a key={l} href="#" style={{ color:'#8878AA', textDecoration:'none', fontSize:13, fontWeight:600 }}>{label}</a>
           ))}
         </div>
         <div style={{ fontSize:12, color:'#8878AA', fontWeight:500 }}>Built with ❤️ on Solana · No telemetry · Open source</div>
