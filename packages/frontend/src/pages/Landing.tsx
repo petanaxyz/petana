@@ -16,7 +16,7 @@ export function Landing() {
         <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, letterSpacing:2, color:'#9945FF' }}>PETANA</div>
         <div style={{ display:'flex', gap:28, alignItems:'center' }}>
           {[{label:'Docs',href:'#'},{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'$FEED',href:'#'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
-            <a key={label} href={href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{label}</a>
+            <a key={l.label} href={l.href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{l.label}</a>
           ))}
           <Link to="/app" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, padding:'10px 24px', borderRadius:50, textDecoration:'none', fontSize:14, boxShadow:'0 4px 20px rgba(153,69,255,0.35)' }}>
             Launch App →
@@ -181,7 +181,7 @@ export function Landing() {
         <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:20, fontWeight:800, letterSpacing:2, color:'#9945FF' }}>PETANA</div>
         <div style={{ display:'flex', gap:24 }}>
           {['Docs','GitHub','Twitter','Discord','Whitepaper'].map(l => (
-            <a key={l} href="#" style={{ color:'#8878AA', textDecoration:'none', fontSize:13, fontWeight:600 }}>{label}</a>
+            <a key={l} href="#" style={{ color:'#8878AA', textDecoration:'none', fontSize:13, fontWeight:600 }}>{l.label}</a>
           ))}
         </div>
         <div style={{ fontSize:12, color:'#8878AA', fontWeight:500 }}>Built with ❤️ on Solana · No telemetry · Open source</div>
