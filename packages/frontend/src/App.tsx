@@ -8,6 +8,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { NavBar } from './components/NavBar';
 import { Dashboard } from './pages/Dashboard';
 import { Demo } from './pages/Demo';
+import { Battle } from './pages/Battle';
 import { Leaderboard } from './pages/Leaderboard';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/app" element={<Dashboard />} />
                 <Route path="/app/leaderboard" element={<Leaderboard />} />
                 <Route path="/demo" element={<Demo />} />
+                <Route path="/app/battle" element={<Battle />} />
                 <Route path="*" element={<Navigate to="/app" replace />} />
               </Routes>
             </BrowserRouter>
