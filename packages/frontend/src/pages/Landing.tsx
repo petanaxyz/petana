@@ -21,6 +21,11 @@ export function Landing() {
           {[{label:'Docs',href:'#'},{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'$FEED',href:'#'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
             <a key={label} href={href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{label}</a>
           ))}
+          <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+            <a href="https://github.com/petanaxyz" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>⚙️</a>
+            <a href="https://twitter.com/Petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>𝕏</a>
+            <a href="https://t.me/petanaclaw" target="_blank" rel="noreferrer" style={{ color:'#8878AA', textDecoration:'none', fontSize:18 }}>✈️</a>
+          </div>
           <Link to="/app" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, padding:'10px 24px', borderRadius:50, textDecoration:'none', fontSize:14, boxShadow:'0 4px 20px rgba(153,69,255,0.35)' }}>
             Launch App →
           </Link>
