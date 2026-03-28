@@ -10,52 +10,51 @@ datasource db {
 model Agent {
   id          String   @id @default(cuid())
   name        String
-  type        String   // trading | dev | social | defi | onchain
-  petType     String   // dog | cat | bird | fish | hamster
+  type        String
+  petType     String
   description String?
   ownerWallet String
+  apiKey      String   @unique @default("")
   hp          Float    @default(100)
   maxHp       Float    @default(100)
   xp          Int      @default(0)
   level       Int      @default(1)
-  status      String   @default("idle") // working | idle | hungry | sleeping
+  status      String   @default("idle")
   evolved     Boolean  @default(false)
   lastTaskAt  DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
   quests      Quest[]
   battles     Battle[] @relation("challenger")
   battlesAs   Battle[] @relation("opponent")
-
   @@index([ownerWallet])
+  @@index([apiKey])
 }
 
 model Quest {
   id        String   @id @default(cuid())
   agentId   String
   agent     Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
-  type      String   // trade | commit | post | swap | battle
+  type      String
   payload   Json
   xpGained  Int      @default(0)
   hpChange  Float    @default(0)
-  txHash    String?  // Solana on-chain memo tx signature
+  txHash    String?
   createdAt DateTime @default(now())
-
   @@index([agentId])
 }
 
 model Battle {
-  id            String   @id @default(cuid())
-  challengerId  String
-  challenger    Agent    @relation("challenger", fields: [challengerId], references: [id])
-  opponentId    String
-  opponent      Agent    @relation("opponent", fields: [opponentId], references: [id])
-  winnerId      String?
-  stake         Float    @default(0) // $FEED staked
-  vrfResult     String?  // Switchboard VRF result hash
-  txHash        String?  // On-chain battle tx
-  status        String   @default("pending") // pending | active | complete
-  createdAt     DateTime @default(now())
-  completedAt   DateTime?
+  id           String    @id @default(cuid())
+  challengerId String
+  challenger   Agent     @relation("challenger", fields: [challengerId], references: [id])
+  opponentId   String
+  opponent     Agent     @relation("opponent", fields: [opponentId], references: [id])
+  winnerId     String?
+  stake        Float     @default(0)
+  vrfResult    String?
+  txHash       String?
+  status       String    @default("pending")
+  createdAt    DateTime  @default(now())
+  completedAt  DateTime?
 }

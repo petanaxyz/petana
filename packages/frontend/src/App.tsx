@@ -5,24 +5,21 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
-import { NavBar } from './components/NavBar';
-import { Dashboard } from './pages/Dashboard';
-import { Landing } from './pages/Landing';
-import { Demo } from './pages/Demo';
-import { Battle } from './pages/Battle';
-import { Leaderboard } from './pages/Leaderboard';
+import { NavBar }       from './components/NavBar';
+import { Landing }      from './pages/Landing';
+import { Dashboard }    from './pages/Dashboard';
+import { Demo }         from './pages/Demo';
+import { Leaderboard }  from './pages/Leaderboard';
+import { Battle }       from './pages/Battle';
+import { Adopt }        from './pages/Adopt';
+import { AgentProfile } from './pages/AgentProfile';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: 2, staleTime: 10_000 } },
-});
+const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 2, staleTime: 10_000 } } });
 
 export default function App() {
   const endpoint = useMemo(() => clusterApiUrl('mainnet-beta'), []);
-  const wallets = useMemo(() => [
-    new PhantomWalletAdapter(),
-    new SolflareWalletAdapter(),
-  ], []);
+  const wallets  = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter()], []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
@@ -30,14 +27,15 @@ export default function App() {
         <WalletModalProvider>
           <QueryClientProvider client={queryClient}>
             <BrowserRouter>
-              <NavBar />
               <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/app" element={<Dashboard />} />
-                <Route path="/app/leaderboard" element={<Leaderboard />} />
-                <Route path="/demo" element={<Demo />} />
-                <Route path="/app/battle" element={<Battle />} />
-                <Route path="*" element={<Navigate to="/app" replace />} />
+                <Route path="/"                   element={<Landing />} />
+                <Route path="/app"                element={<><NavBar /><Dashboard /></>} />
+                <Route path="/app/adopt"          element={<><NavBar /><Adopt /></>} />
+                <Route path="/app/agent/:id"      element={<><NavBar /><AgentProfile /></>} />
+                <Route path="/app/leaderboard"    element={<><NavBar /><Leaderboard /></>} />
+                <Route path="/app/battle"         element={<><NavBar /><Battle /></>} />
+                <Route path="/demo"               element={<><NavBar /><Demo /></>} />
+                <Route path="*"                   element={<Navigate to="/" replace />} />
               </Routes>
             </BrowserRouter>
           </QueryClientProvider>
