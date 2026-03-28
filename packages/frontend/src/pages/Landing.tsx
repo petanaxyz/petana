@@ -33,7 +33,7 @@ export function Landing() {
             </a>
           </div>
           <Link to="/app" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, padding:'10px 24px', borderRadius:50, textDecoration:'none', fontSize:14, boxShadow:'0 4px 20px rgba(153,69,255,0.35)' }}>
-            Launch App →
+            🐾 Adopt a Pet
           </Link>
         </div>
       </nav>
