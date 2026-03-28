@@ -18,7 +18,7 @@ export function Landing() {
           <span style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, letterSpacing:2, color:'#9945FF' }}>PETANA</span>
         </div>
         <div style={{ display:'flex', gap:28, alignItems:'center' }}>
-          {[{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'$FEED',href:'#'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
+          {[{label:'Agents',href:'#'},{label:'Leaderboard',href:'/app/leaderboard'},{label:'🎮 Demo',href:'/demo'}].map(({label,href}) => (
             <a key={label} href={href} style={{ color:'#3D2C6B', textDecoration:'none', fontSize:14, fontWeight:600 }}>{label}</a>
           ))}
           <div style={{ display:'flex', alignItems:'center', gap:16 }}>
