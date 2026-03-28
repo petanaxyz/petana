@@ -36,6 +36,22 @@ function timeAgo(date: string) {
 
 const XP_THRESHOLDS = [0,100,250,500,850,1300,1900,2700,3700,5000];
 
+function shareToTwitter(agent: any) {
+  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' }[agent.petType] || '🐾';
+  const status = agent.evolved ? '👑 EVOLVED' : agent.status === 'working' ? '⚡ Working' : '😴 Resting';
+  const text = `${emoji} Meet ${agent.name}, my AI agent pet on @petanaxyz!\n\n` +
+    `📊 Level ${agent.level} ${agent.type} agent\n` +
+    `💖 HP: ${Math.round(agent.hp)}/100\n` +
+    `✨ XP: ${agent.xp.toLocaleString()}\n` +
+    `${status}\n\n` +
+    `Monitor your AI agents like virtual pets 🐾\n` +
+    `#PETANA #Solana #AIAgent #Web3`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://www.petana.xyz')}`;
+  window.open(url, '_blank');
+}
+
+
+
 export function AgentProfile() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -131,6 +147,22 @@ export function AgentProfile() {
               {agent.evolved && <span className="text-sm font-bold text-amber-500">👑 EVOLVED</span>}
             </div>
             <p className="text-sm text-slate-400 mb-1">{agent.type} · Level {agent.level}</p>
+            <div className="flex gap-2 mt-3 flex-wrap">
+              <button onClick={() => shareToTwitter(agent)}
+                className="flex items-center gap-2 bg-black text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-gray-800 transition-all">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+                Share on X
+              </button>
+              {agent.evolved && (
+                <button onClick={() => {
+                  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' }[agent.petType] || '🐾';
+                  const text = `👑 ${agent.name} just EVOLVED on @petanaxyz!\n\n${emoji} Level ${agent.level} ${agent.type} agent\n✨ ${agent.xp.toLocaleString()} XP earned\n\nFrom humble beginnings to a fully evolved AI pet 🚀\n#PETANA #Solana #AIAgent`;
+                  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://www.petana.xyz')}`, '_blank');
+                }} className="flex items-center gap-2 bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-amber-600 transition-all">
+                  👑 Share Evolution!
+                </button>
+              )}
+            </div>
             {agent.description && <p className="text-sm text-slate-500 mb-3">{agent.description}</p>}
 
             <div className="mb-3">
