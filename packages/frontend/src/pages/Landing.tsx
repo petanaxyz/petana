@@ -261,27 +261,6 @@ export function Landing() {
         </div>
       </div>
 
-      {/* HOW IT WORKS */}
-      <section style={{ padding:'100px 24px', background:'#EDFBF6' }}>
-        <div style={{ textAlign:'center', marginBottom:52 }}>
-          <div style={{ fontSize:12, fontWeight:700, letterSpacing:2.5, textTransform:'uppercase', color:'#9945FF', marginBottom:12 }}>🚀 Get Started</div>
-          <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800 }}>From Zero to Pets in 5 Seconds</h2>
-        </div>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:20, maxWidth:900, margin:'0 auto' }}>
-          {[['📦','Install','One command. No config files, no swap account.','linear-gradient(135deg,#9945FF,#C27AFF)'],
-            ['🐾','Adopt','Connect your agents. Each one gets a pet avatar.','linear-gradient(135deg,#FF5FA0,#FF8C42)'],
-            ['📊','Monitor','Watch them work in real-time. Alerts when HP is low.','linear-gradient(135deg,#19AEFF,#00C896)'],
-            ['🏆','Level Up','Earn $FEED, win battles, mint rare NFT cards.','linear-gradient(135deg,#FFD426,#FF8C42)'],
-          ].map(([ico,title,desc,bg]) => (
-            <div key={title as string} style={{ textAlign:'center', padding:'0 10px' }}>
-              <div style={{ width:72, height:72, borderRadius:'50%', margin:'0 auto 18px', display:'flex', alignItems:'center', justifyContent:'center', fontSize:30, background:bg as string, border:'3px solid #fff', boxShadow:'0 8px 24px rgba(153,69,255,0.2)' }}>{ico}</div>
-              <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:18, fontWeight:800, color:'#1A1035', marginBottom:6 }}>{title}</div>
-              <div style={{ fontSize:13, color:'#8878AA', fontWeight:500, lineHeight:1.6 }}>{desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* CTA */}
       <section style={{ padding:'120px 24px', textAlign:'center', background:'#F7F4FF', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:700, height:700, borderRadius:'50%', background:'radial-gradient(circle,rgba(153,69,255,0.08),transparent 65%)', pointerEvents:'none' }} />
