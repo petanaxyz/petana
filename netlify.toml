@@ -4,6 +4,16 @@
   publish = "packages/frontend/dist"
 
 [[redirects]]
-  from = "/*"
+  from = "/app/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/app"
   to = "/index.html"
   status = 200
