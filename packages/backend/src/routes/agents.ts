@@ -118,32 +118,3 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
     return reply.send(agents);
   });
 }
-
-  server.post('/debate', async (req, reply) => {
-    const { pet1Name, pet1Type, pet2Name, pet2Type, topic } = req.body as any;
-    
-    const Anthropic = require('@anthropic-ai/sdk');
-    const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY });
-    
-    const msg = await client.messages.create({
-      model: 'claude-opus-4-5',
-      max_tokens: 1024,
-      messages: [{
-        role: 'user',
-        content: `Simulate a fun, witty debate between two AI agent pets in a virtual office.
-
-Pet 1: ${pet1Name} (${pet1Type} agent)
-Pet 2: ${pet2Name} (${pet2Type} agent)
-Topic: "${topic}"
-
-Generate exactly 3 rounds of debate. Each pet argues from their agent type perspective. Keep it fun, punchy, and in-character. Max 2 sentences per message.
-
-Respond ONLY with JSON (no markdown):
-{"messages":[{"pet":1,"round":1,"content":"..."},{"pet":2,"round":1,"content":"..."},{"pet":1,"round":2,"content":"..."},{"pet":2,"round":2,"content":"..."},{"pet":1,"round":3,"content":"..."},{"pet":2,"round":3,"content":"..."}]}`
-      }]
-    });
-
-    const text = (msg.content[0] as any).text;
-    const parsed = JSON.parse(text.replace(/```json|```/g, '').trim());
-    return reply.send(parsed);
-  });
