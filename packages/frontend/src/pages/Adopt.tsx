@@ -12,6 +12,16 @@ const PET_TYPES = [
   { type: 'social',  petType: 'bird',    emoji: '🐦', label: 'Bird',    desc: 'Social Agent',   color: '#19AEFF' },
   { type: 'defi',    petType: 'fish',    emoji: '🐟', label: 'Fish',    desc: 'DeFi Agent',     color: '#FF5FA0' },
   { type: 'onchain', petType: 'hamster', emoji: '🐹', label: 'Hamster', desc: 'On-Chain Agent', color: '#FF8C42' },
+  { type: 'trading', petType: 'lion',    emoji: '🦁', label: 'Lion',    desc: 'Alpha Hunter',   color: '#FFB800' },
+  { type: 'trading', petType: 'tiger',   emoji: '🐯', label: 'Tiger',   desc: 'Strike Trader',  color: '#FF6B00' },
+  { type: 'onchain', petType: 'wolf',    emoji: '🐺', label: 'Wolf',    desc: 'Pack Protocol',  color: '#6B7280' },
+  { type: 'dev',     petType: 'fox',     emoji: '🦊', label: 'Fox',     desc: 'Clever Coder',   color: '#FF8C42' },
+  { type: 'defi',    petType: 'bear',    emoji: '🐻', label: 'Bear',    desc: 'Yield Guardian', color: '#8B4513' },
+  { type: 'social',  petType: 'eagle',   emoji: '🦅', label: 'Eagle',   desc: 'Vision Caster',  color: '#1E40AF' },
+  { type: 'onchain', petType: 'dragon',  emoji: '🐉', label: 'Dragon',  desc: 'Chain Dominator',color: '#DC2626' },
+  { type: 'defi',    petType: 'shark',   emoji: '🦈', label: 'Shark',   desc: 'Liquidity King', color: '#0EA5E9' },
+  { type: 'trading', petType: 'leopard', emoji: '🐆', label: 'Leopard', desc: 'Speed Scalper',  color: '#D97706' },
+  { type: 'social',  petType: 'phoenix', emoji: '🦋', label: 'Phoenix', desc: 'Rebirth Agent',  color: '#EC4899' },
 ];
 
 export function Adopt() {
@@ -118,7 +128,7 @@ export function Adopt() {
 
       <div className="bg-white border-2 border-purple-100 rounded-2xl p-6 mb-4">
         <p className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-4">2. Choose agent type</p>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
           {PET_TYPES.map(pet => (
             <motion.button key={pet.petType} whileHover={{ y: -2 }} onClick={() => setSelected(pet)}
               className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all ${selected?.petType === pet.petType ? 'border-violet-400 bg-violet-50' : 'border-purple-100'}`}>

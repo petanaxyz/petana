@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 const AgentSchema = z.object({
   name:        z.string().min(1).max(50),
   type:        z.enum(['trading','dev','social','defi','onchain']),
-  petType:     z.enum(['dog','cat','bird','fish','hamster']),
+  petType:     z.enum(['dog','cat','bird','fish','hamster','lion','tiger','wolf','fox','bear','eagle','dragon','shark','leopard','phoenix']),
   description: z.string().max(200).optional(),
   ownerWallet: z.string().min(32).max(44),
 });

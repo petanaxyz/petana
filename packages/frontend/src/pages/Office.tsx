@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 const WS_URL  = import.meta.env.VITE_WS_URL  || 'ws://localhost:3001';
 
-const PET_EMOJI: Record<string, string> = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' };
+const PET_EMOJI: Record<string, string> = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹', lion:'🦁', tiger:'🐯', wolf:'🐺', fox:'🦊', bear:'🐻', eagle:'🦅', dragon:'🐉', shark:'🦈', leopard:'🐆', phoenix:'🦋' };
 const ROOM_CONFIG: Record<string, { label: string; bg: string; border: string; textColor: string }> = {
   trading:  { label: 'Trading Room',  bg: '#F0FDF4', border: '#BBF7D0', textColor: '#065F46' },
   dev:      { label: 'Dev Room',      bg: '#F5F3FF', border: '#DDD6FE', textColor: '#4C1D95' },

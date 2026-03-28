@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 const WS_URL  = import.meta.env.VITE_WS_URL  || 'ws://localhost:3001';
 
-const PET_EMOJI: Record<string, string> = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' };
+const PET_EMOJI: Record<string, string> = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹', lion:'🦁', tiger:'🐯', wolf:'🐺', fox:'🦊', bear:'🐻', eagle:'🦅', dragon:'🐉', shark:'🦈', leopard:'🐆', phoenix:'🦋' };
 const TASK_ICON: Record<string, string> = { trade:'🔄', commit:'💻', post:'🐦', swap:'💧', battle:'⚔️' };
 const TASK_COLOR: Record<string, string> = { trade:'text-emerald-600', commit:'text-violet-600', post:'text-blue-500', swap:'text-pink-500', battle:'text-orange-500' };
 
@@ -37,7 +37,7 @@ function timeAgo(date: string) {
 const XP_THRESHOLDS = [0,100,250,500,850,1300,1900,2700,3700,5000];
 
 function shareToTwitter(agent: any) {
-  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' }[agent.petType] || '🐾';
+  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹', lion:'🦁', tiger:'🐯', wolf:'🐺', fox:'🦊', bear:'🐻', eagle:'🦅', dragon:'🐉', shark:'🦈', leopard:'🐆', phoenix:'🦋' }[agent.petType] || '🐾';
   const status = agent.evolved ? '👑 EVOLVED' : agent.status === 'working' ? '⚡ Working' : '😴 Resting';
   const text = `${emoji} Meet ${agent.name}, my AI agent pet on @petanaxyz!\n\n` +
     `📊 Level ${agent.level} ${agent.type} agent\n` +
@@ -155,7 +155,7 @@ export function AgentProfile() {
               </button>
               {agent.evolved && (
                 <button onClick={() => {
-                  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹' }[agent.petType] || '🐾';
+                  const emoji = { dog:'🐶', cat:'🐱', bird:'🐦', fish:'🐟', hamster:'🐹', lion:'🦁', tiger:'🐯', wolf:'🐺', fox:'🦊', bear:'🐻', eagle:'🦅', dragon:'🐉', shark:'🦈', leopard:'🐆', phoenix:'🦋' }[agent.petType] || '🐾';
                   const text = `👑 ${agent.name} just EVOLVED on @petanaxyz!\n\n${emoji} Level ${agent.level} ${agent.type} agent\n✨ ${agent.xp.toLocaleString()} XP earned\n\nFrom humble beginnings to a fully evolved AI pet 🚀\n#PETANA #Solana #AIAgent`;
                   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://www.petana.xyz')}`, '_blank');
                 }} className="flex items-center gap-2 bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-amber-600 transition-all">
