@@ -185,25 +185,53 @@ export function Landing() {
       </div>
 
       {/* PET TYPES */}
-      <section style={{ padding:'100px 24px', background:'#FFF7F0' }}>
-        <div style={{ textAlign:'center', marginBottom:52 }}>
+      <section style={{ padding:'100px 0', background:'#FFF7F0', overflow:'hidden' }}>
+        <div style={{ textAlign:'center', marginBottom:52, padding:'0 24px' }}>
           <div style={{ fontSize:12, fontWeight:700, letterSpacing:2.5, textTransform:'uppercase', color:'#9945FF', marginBottom:12 }}>🐾 Meet the Pets</div>
           <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800, marginBottom:12 }}>Choose Your Agent Type</h2>
-          <p style={{ color:'#8878AA', fontSize:16, fontWeight:500, maxWidth:480, margin:'0 auto' }}>Every AI agent gets a pet avatar based on its specialty.</p>
+          <p style={{ color:'#8878AA', fontSize:16, fontWeight:500, maxWidth:480, margin:'0 auto' }}>Every AI agent gets a pet avatar based on its specialty. 15 unique pets to choose from.</p>
         </div>
-        <div style={{ display:'flex', gap:18, maxWidth:920, margin:'0 auto', flexWrap:'wrap', justifyContent:'center' }}>
-          {[['🐶','Dog','Trading Agent','Loyal · Fast','rgba(0,200,150,0.1)','#00C896'],
-            ['🐱','Cat','Dev Agent','Smart · Precise','rgba(153,69,255,0.1)','#9945FF'],
-            ['🐦','Bird','Social Agent','Vocal · Social','rgba(25,174,255,0.1)','#19AEFF'],
-            ['🐟','Fish','DeFi Agent','Deep · Liquid','rgba(255,95,160,0.1)','#FF5FA0'],
-            ['🐹','Hamster','On-Chain Protocol','Busy · Grinder','rgba(255,212,38,0.12)','#B38600']].map(([emoji,name,role,trait,bg,color]) => (
-            <div key={name} style={{ background:'#fff', border:'2.5px solid rgba(153,69,255,0.15)', borderRadius:24, padding:'28px 20px', textAlign:'center', width:158, boxShadow:'0 4px 16px rgba(153,69,255,0.10)', cursor:'pointer' }}>
-              <span style={{ fontSize:52, display:'block', marginBottom:10, animation:'wobble 4s ease-in-out infinite' }}>{emoji}</span>
-              <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:18, fontWeight:800, color:'#1A1035' }}>{name}</div>
-              <div style={{ fontSize:11, fontWeight:600, color:'#8878AA', marginBottom:10 }}>{role}</div>
-              <div style={{ display:'inline-block', fontSize:10, fontWeight:700, padding:'4px 12px', borderRadius:20, background:bg as string, color:color as string }}>{trait}</div>
-            </div>
-          ))}
+        <div style={{ position:'relative', overflow:'hidden' }}>
+          <div style={{ display:'flex', gap:18, animation:'petScroll 40s linear infinite', width:'max-content' }}>
+            {[['🐶','Dog','Trading Agent','Loyal · Fast','rgba(0,200,150,0.1)','#00C896'],
+              ['🐱','Cat','Dev Agent','Smart · Precise','rgba(153,69,255,0.1)','#9945FF'],
+              ['🐦','Bird','Social Agent','Vocal · Social','rgba(25,174,255,0.1)','#19AEFF'],
+              ['🐟','Fish','DeFi Agent','Deep · Liquid','rgba(255,95,160,0.1)','#FF5FA0'],
+              ['🐹','Hamster','On-Chain Agent','Busy · Grinder','rgba(255,212,38,0.12)','#B38600'],
+              ['🦁','Lion','Alpha Hunter','Bold · Fierce','rgba(255,184,0,0.12)','#B38600'],
+              ['🐯','Tiger','Strike Trader','Fast · Lethal','rgba(255,107,0,0.12)','#FF6B00'],
+              ['🐺','Wolf','Pack Protocol','Smart · Loyal','rgba(107,114,128,0.12)','#4B5563'],
+              ['🦊','Fox','Clever Coder','Witty · Sharp','rgba(255,140,66,0.12)','#FF8C42'],
+              ['🐻','Bear','Yield Guardian','Strong · Steady','rgba(139,69,19,0.12)','#8B4513'],
+              ['🦅','Eagle','Vision Caster','Sharp · Fast','rgba(30,64,175,0.12)','#1E40AF'],
+              ['🐉','Dragon','Chain Dominator','Rare · Powerful','rgba(220,38,38,0.12)','#DC2626'],
+              ['🦈','Shark','Liquidity King','Hungry · Deep','rgba(14,165,233,0.12)','#0EA5E9'],
+              ['🐆','Leopard','Speed Scalper','Quick · Silent','rgba(217,119,6,0.12)','#D97706'],
+              ['🦋','Phoenix','Rebirth Agent','Rare · Eternal','rgba(236,72,153,0.12)','#EC4899'],
+              ['🐶','Dog','Trading Agent','Loyal · Fast','rgba(0,200,150,0.1)','#00C896'],
+              ['🐱','Cat','Dev Agent','Smart · Precise','rgba(153,69,255,0.1)','#9945FF'],
+              ['🐦','Bird','Social Agent','Vocal · Social','rgba(25,174,255,0.1)','#19AEFF'],
+              ['🐟','Fish','DeFi Agent','Deep · Liquid','rgba(255,95,160,0.1)','#FF5FA0'],
+              ['🐹','Hamster','On-Chain Agent','Busy · Grinder','rgba(255,212,38,0.12)','#B38600'],
+              ['🦁','Lion','Alpha Hunter','Bold · Fierce','rgba(255,184,0,0.12)','#B38600'],
+              ['🐯','Tiger','Strike Trader','Fast · Lethal','rgba(255,107,0,0.12)','#FF6B00'],
+              ['🐺','Wolf','Pack Protocol','Smart · Loyal','rgba(107,114,128,0.12)','#4B5563'],
+              ['🦊','Fox','Clever Coder','Witty · Sharp','rgba(255,140,66,0.12)','#FF8C42'],
+              ['🐻','Bear','Yield Guardian','Strong · Steady','rgba(139,69,19,0.12)','#8B4513'],
+              ['🦅','Eagle','Vision Caster','Sharp · Fast','rgba(30,64,175,0.12)','#1E40AF'],
+              ['🐉','Dragon','Chain Dominator','Rare · Powerful','rgba(220,38,38,0.12)','#DC2626'],
+              ['🦈','Shark','Liquidity King','Hungry · Deep','rgba(14,165,233,0.12)','#0EA5E9'],
+              ['🐆','Leopard','Speed Scalper','Quick · Silent','rgba(217,119,6,0.12)','#D97706'],
+              ['🦋','Phoenix','Rebirth Agent','Rare · Eternal','rgba(236,72,153,0.12)','#EC4899'],
+            ].map(([emoji,name,role,trait,bg,color], i) => (
+              <div key={i} style={{ background:'#fff', border:'2.5px solid rgba(153,69,255,0.15)', borderRadius:24, padding:'28px 20px', textAlign:'center', width:158, flexShrink:0, boxShadow:'0 4px 16px rgba(153,69,255,0.10)' }}>
+                <span style={{ fontSize:52, display:'block', marginBottom:10, animation:'wobble 4s ease-in-out infinite' }}>{emoji}</span>
+                <div style={{ fontFamily:"'Baloo 2',cursive", fontSize:18, fontWeight:800, color:'#1A1035' }}>{name}</div>
+                <div style={{ fontSize:11, fontWeight:600, color:'#8878AA', marginBottom:10 }}>{role}</div>
+                <div style={{ display:'inline-block', fontSize:10, fontWeight:700, padding:'4px 12px', borderRadius:20, background:bg as string, color:color as string }}>{trait}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -355,6 +383,7 @@ export function Landing() {
         @keyframes bobOffice { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
         @keyframes swayOffice { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
         @keyframes shakeOffice { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} }
+        @keyframes petScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
         @keyframes wobble { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         a { cursor: pointer; }
