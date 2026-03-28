@@ -47,7 +47,7 @@ async function processTask(agent: any, type: string, payload: Record<string, unk
   } catch (err) { console.warn('On-chain log failed:', err); }
 
   const quest = await prisma.quest.create({
-    data: { agentId: agent.id, type, payload, xpGained: xpGain, hpChange: newHp - currentHp, txHash },
+    data: { agentId: agent.id, type, payload: payload as any, xpGained: xpGain, hpChange: newHp - currentHp, txHash },
   });
 
   broadcast(agent.ownerWallet, { type: 'hp_update', agentId: agent.id, hp: newHp });
