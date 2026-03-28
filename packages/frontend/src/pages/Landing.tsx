@@ -1,7 +1,99 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const PETS = ['🐶','🐱','🐦','🐟','🐹','🦜'];
+
+
+const BOT_AGENTS = [
+  { id:'1', name:'Alpha', petType:'dog',     type:'trading', hp:83, xp:1242, status:'working' },
+  { id:'2', name:'Byte',  petType:'cat',     type:'dev',     hp:93, xp:981,  status:'working' },
+  { id:'3', name:'Vibe',  petType:'bird',    type:'social',  hp:59, xp:542,  status:'idle'    },
+  { id:'4', name:'Coral', petType:'fish',    type:'defi',    hp:29, xp:332,  status:'hungry'  },
+  { id:'5', name:'Scout', petType:'hamster', type:'onchain', hp:80, xp:1113, status:'idle'    },
+];
+const ROOM_CFG = {
+  trading: {label:'Trading Room', bg:'rgba(0,200,150,0.08)', border:'rgba(0,200,150,0.25)', color:'#00C896'},
+  dev:     {label:'Dev Room',     bg:'rgba(153,69,255,0.08)',border:'rgba(153,69,255,0.25)',color:'#9945FF'},
+  social:  {label:'Social Room',  bg:'rgba(25,174,255,0.08)',border:'rgba(25,174,255,0.25)',color:'#19AEFF'},
+  defi:    {label:'DeFi Room',    bg:'rgba(255,95,160,0.08)',border:'rgba(255,95,160,0.25)',color:'#FF5FA0'},
+  onchain: {label:'On-Chain Room',bg:'rgba(255,140,66,0.08)',border:'rgba(255,140,66,0.25)',color:'#FF8C42'},
+};
+const PET_E = {dog:'🐶',cat:'🐱',bird:'🐦',fish:'🐟',hamster:'🐹'};
+const TASK_EVENTS = [
+  ['Alpha','SOL/USDC swap','+10 XP','#00C896'],['Byte','PR #142 merged','+8 XP','#9945FF'],
+  ['Scout','Chain verified','+10 XP','#FF8C42'],['Vibe','Thread posted','+5 XP','#19AEFF'],
+  ['Coral','Pool rebalanced','+10 XP','#FF5FA0'],['Alpha','ETH long','+10 XP','#00C896'],
+  ['Byte','Bug fix merged','+8 XP','#9945FF'],
+];
+
+function OfficePreview() {
+  const [positions, setPositions] = React.useState({
+    '1':'trading','2':'dev','3':'social','4':'defi','5':'onchain'
+  });
+  const [feed, setFeed] = React.useState([]);
+  const feedIdRef = React.useRef(0);
+
+  React.useEffect(() => {
+    const rooms = Object.keys(ROOM_CFG);
+    const interval = setInterval(() => {
+      if (Math.random() > 0.6) {
+        const agent = BOT_AGENTS[Math.floor(Math.random()*BOT_AGENTS.length)];
+        const room = rooms[Math.floor(Math.random()*rooms.length)];
+        setPositions(p => ({...p, [agent.id]: room}));
+      }
+      const ev = TASK_EVENTS[feedIdRef.current % TASK_EVENTS.length];
+      feedIdRef.current++;
+      const id = feedIdRef.current;
+      setFeed(f => [{id, name:ev[0], action:ev[1], xp:ev[2], color:ev[3]},...f.slice(0,7)]);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const groups = {};
+  Object.keys(ROOM_CFG).forEach(r => { groups[r]=[]; });
+  BOT_AGENTS.forEach(a => { const r = positions[a.id]||a.type; if(groups[r]) groups[r].push(a); });
+
+  return (
+    <div style={{ maxWidth:1100, margin:'0 auto', display:'flex', gap:20, position:'relative', zIndex:2 }}>
+      <div style={{ flex:1, display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:12 }}>
+        {Object.entries(ROOM_CFG).map(([room, cfg]) => (
+          <div key={room} style={{ background:cfg.bg, border:`1.5px solid ${cfg.border}`, borderRadius:16, padding:14, minHeight:140 }}>
+            <div style={{ fontSize:10, fontWeight:700, letterSpacing:1.5, textTransform:'uppercase', color:cfg.color, marginBottom:10 }}>{cfg.label}</div>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:12 }}>
+              {(groups[room]||[]).map(a => (
+                <div key={a.id} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3 }}>
+                  <div style={{ position:'relative' }}>
+                    <span style={{ fontSize:28, display:'block', animation: a.status==='working'?'bobOffice 1.5s ease-in-out infinite': a.status==='hungry'?'shakeOffice 0.8s ease-in-out infinite':'swayOffice 3s ease-in-out infinite' }}>{PET_E[a.petType]}</span>
+                    <span style={{ position:'absolute', bottom:0, right:0, width:8, height:8, borderRadius:'50%', border:'1.5px solid #0F0A1E', background: a.status==='working'?'#10B981':a.status==='hungry'?'#F59E0B':'#9CA3AF' }} />
+                  </div>
+                  <div style={{ fontSize:10, fontWeight:700, color:'rgba(255,255,255,0.8)' }}>{a.name}</div>
+                  <div style={{ width:36, height:3, background:'rgba(255,255,255,0.1)', borderRadius:99, overflow:'hidden' }}>
+                    <div style={{ height:'100%', borderRadius:99, background: a.hp>=80?'#10B981':a.hp>=50?'#8B5CF6':a.hp>=20?'#F59E0B':'#EF4444', width:`${a.hp}%` }} />
+                  </div>
+                </div>
+              ))}
+              {(groups[room]||[]).length===0 && <div style={{ fontSize:11, color:'rgba(255,255,255,0.2)', fontStyle:'italic' }}>Empty</div>}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ width:220, background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:16, padding:14, flexShrink:0 }}>
+        <div style={{ fontSize:10, fontWeight:700, letterSpacing:1.5, textTransform:'uppercase', color:'rgba(255,255,255,0.4)', marginBottom:12, display:'flex', alignItems:'center', gap:6 }}>
+          <span style={{ width:6, height:6, borderRadius:'50%', background:'#EF4444', display:'inline-block', animation:'ripple 2s infinite' }}/>Live Feed
+        </div>
+        {feed.map(ev => (
+          <div key={ev.id} style={{ borderTop:'1px solid rgba(255,255,255,0.05)', padding:'7px 0' }}>
+            <div style={{ display:'flex', justifyContent:'space-between' }}>
+              <span style={{ fontSize:11, fontWeight:700, color:'rgba(255,255,255,0.8)' }}>{ev.name}</span>
+              <span style={{ fontSize:10, fontWeight:700, color:ev.color }}>{ev.xp}</span>
+            </div>
+            <div style={{ fontSize:10, color:'rgba(255,255,255,0.4)' }}>{ev.action}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function FloatingPet({ emoji, style }: { emoji: string; style: React.CSSProperties }) {
   return <div style={{ position:'absolute', fontSize:48, animation:'floatPet 5s ease-in-out infinite', pointerEvents:'none', ...style }}>{emoji}</div>;
@@ -115,6 +207,23 @@ export function Landing() {
         </div>
       </section>
 
+
+      {/* VIRTUAL OFFICE PREVIEW */}
+      <section style={{ padding:'100px 24px', background:'#0F0A1E', position:'relative', overflow:'hidden' }}>
+        <div style={{ position:'absolute', width:600, height:600, borderRadius:'50%', background:'rgba(153,69,255,0.08)', top:-200, left:-200, filter:'blur(80px)' }} />
+        <div style={{ textAlign:'center', marginBottom:52, position:'relative', zIndex:2 }}>
+          <div style={{ fontSize:12, fontWeight:700, letterSpacing:2.5, textTransform:'uppercase', color:'#00C896', marginBottom:12 }}>🏢 Virtual Office</div>
+          <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800, color:'#fff', marginBottom:12 }}>Watch Your Agents Work Live</h2>
+          <p style={{ color:'rgba(255,255,255,0.5)', fontSize:16, fontWeight:500, maxWidth:480, margin:'0 auto' }}>Agents move between rooms, complete tasks, and debate each other in real-time.</p>
+        </div>
+        <OfficePreview />
+        <div style={{ textAlign:'center', marginTop:40, position:'relative', zIndex:2 }}>
+          <Link to="/app/office" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, fontSize:15, padding:'14px 34px', borderRadius:50, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8 }}>
+            🏢 Enter Your Office
+          </Link>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section style={{ padding:'100px 24px', background:'#F7F4FF' }}>
         <div style={{ textAlign:'center', marginBottom:52 }}>
@@ -207,6 +316,9 @@ export function Landing() {
         @keyframes ripple { 0%{box-shadow:0 0 0 0 rgba(0,200,150,0.5)} 70%{box-shadow:0 0 0 10px rgba(0,200,150,0)} 100%{box-shadow:0 0 0 0 rgba(0,200,150,0)} }
         @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
         @keyframes gradShift { 0%{background-position:0%} 100%{background-position:300%} }
+        @keyframes bobOffice { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        @keyframes swayOffice { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+        @keyframes shakeOffice { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} }
         @keyframes wobble { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         a { cursor: pointer; }
