@@ -5,6 +5,7 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import { CountdownBanner } from './components/CountdownBanner';
 import { NavBar }       from './components/NavBar';
 import { Landing }      from './pages/Landing';
 import { Dashboard }    from './pages/Dashboard';
@@ -29,6 +30,7 @@ export default function App() {
         <WalletModalProvider>
           <QueryClientProvider client={queryClient}>
             <BrowserRouter>
+              <CountdownBanner />
               <Routes>
                 <Route path="/"                   element={<Landing />} />
                 <Route path="/app"                element={<><NavBar /><Dashboard /></>} />
