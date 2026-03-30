@@ -82,7 +82,7 @@ export function Dashboard() {
   }
 
   return (
-    <div className="pt-20 px-6 pb-10 max-w-6xl mx-auto">
+    <div className="pt-28 px-6 pb-10 max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>

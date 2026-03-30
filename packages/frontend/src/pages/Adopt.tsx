@@ -75,7 +75,7 @@ export function Adopt() {
   if (step === 'success' && adopted) {
     const pet = PET_TYPES.find(p => p.petType === adopted.petType)!;
     return (
-      <div className="pt-20 px-4 pb-10 max-w-2xl mx-auto">
+      <div className="pt-28 px-4 pb-10 max-w-2xl mx-auto">
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
           <motion.span className="text-8xl block mb-4" animate={{ scale: [1,1.1,1] }} transition={{ repeat: 3, duration: 0.4 }}>{pet.emoji}</motion.span>
           <h1 className="text-3xl font-extrabold text-slate-900 mb-2">🎉 {adopted.name} has been adopted!</h1>
@@ -114,7 +114,7 @@ export function Adopt() {
   }
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-2xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-2xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-extrabold text-slate-900">🐾 Adopt a Pet</h1>
         <p className="text-sm text-slate-400">Create your AI agent as a virtual pet. Get an API key to start monitoring.</p>

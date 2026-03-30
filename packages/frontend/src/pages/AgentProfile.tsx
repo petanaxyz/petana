@@ -138,7 +138,7 @@ export function AgentProfile() {
   const xpPct = level >= 10 ? 100 : Math.min(100, ((agent.xp - (XP_THRESHOLDS[level-1]||0)) / ((XP_THRESHOLDS[level]||5000) - (XP_THRESHOLDS[level-1]||0))) * 100);
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-4xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-4xl mx-auto">
       <div className="fixed top-20 right-4 z-50 flex flex-col gap-2">
         <AnimatePresence>
           {notifs.map(n => (

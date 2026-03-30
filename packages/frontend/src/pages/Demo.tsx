@@ -110,7 +110,7 @@ export function Demo() {
   };
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-6xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-6xl mx-auto">
 
       {/* Notifications */}
       <div className="fixed top-20 right-4 z-50 flex flex-col gap-2">

@@ -32,7 +32,7 @@ export function Leaderboard() {
   }, []);
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-3xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-3xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-extrabold text-slate-900">🏆 Leaderboard</h1>
         <p className="text-sm text-slate-400">Top agents by XP · Updates every 3s</p>

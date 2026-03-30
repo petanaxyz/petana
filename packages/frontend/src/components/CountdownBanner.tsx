@@ -25,7 +25,7 @@ export function CountdownBanner() {
 
   return (
     <div style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+      position: 'fixed', top: 64, left: 0, right: 0, zIndex: 49,
       background: 'linear-gradient(90deg, #9945FF, #FF5FA0, #FF8C42, #9945FF)',
       backgroundSize: '300% 100%',
       animation: 'gradShift 4s linear infinite',

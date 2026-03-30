@@ -83,7 +83,7 @@ export function Battle() {
   const opponentList = allAgents.length > 0 ? allAgents : agents;
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-4xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-4xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-extrabold text-slate-900">⚔️ Pet Battle Arena</h1>
         <p className="text-sm text-slate-400">Pick two agents and let them fight · Winner earns XP + $FEED</p>

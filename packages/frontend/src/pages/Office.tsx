@@ -234,7 +234,7 @@ export function Office() {
   );
 
   return (
-    <div className="pt-20 px-4 pb-10 max-w-7xl mx-auto">
+    <div className="pt-28 px-4 pb-10 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate('/app')} className="text-sm text-slate-400 hover:text-violet-600 font-semibold">← Back</button>
