@@ -112,7 +112,7 @@ export async function agentRoutes(server: FastifyInstance): Promise<void> {
   });
 
   server.get('/leaderboard', async (_req, reply) => {
-    const agents = await prisma.agent.findMany({ orderBy: { xp: 'desc' }, take: 50,
+    const agents = await prisma.agent.findMany({ orderBy: { xp: 'desc' }, take: 100,
       select: { id: true, name: true, petType: true, type: true, xp: true, level: true, hp: true, evolved: true, ownerWallet: true }
     });
     return reply.send(agents);
