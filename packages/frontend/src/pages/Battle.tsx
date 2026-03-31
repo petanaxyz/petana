@@ -86,7 +86,7 @@ export function Battle() {
     <div className="pt-28 px-4 pb-10 max-w-4xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-extrabold text-slate-900">⚔️ Pet Battle Arena</h1>
-        <p className="text-sm text-slate-400">Pick two agents and let them fight · Winner earns XP + $FEED</p>
+        <p className="text-sm text-slate-400">Pick two agents and let them fight · Winner earns XP + $PETANA</p>
       </div>
 
       {state === 'select' && (
@@ -206,7 +206,7 @@ export function Battle() {
             <div className="flex gap-3 justify-center">
               <span className="bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-2 rounded-full">+25 XP</span>
               <span className="bg-violet-100 text-violet-700 text-sm font-bold px-4 py-2 rounded-full">+8 HP</span>
-              <span className="bg-amber-100 text-amber-700 text-sm font-bold px-4 py-2 rounded-full">+5 $FEED</span>
+              <span className="bg-amber-100 text-amber-700 text-sm font-bold px-4 py-2 rounded-full">+5 $PETANA</span>
             </div>
           </div>
           <div className="flex gap-3 justify-center">

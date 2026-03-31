@@ -36,7 +36,7 @@ export function CountdownBanner() {
       {!launched ? (
         <>
           <span style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>
-            🚀 $FEED launching on PumpFun in
+            🚀 $PETANA launching on PumpFun in
           </span>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
             {[['h', timeLeft.h], ['m', timeLeft.m], ['s', timeLeft.s]].map(([label, val]) => (
@@ -72,7 +72,7 @@ export function CountdownBanner() {
         </>
       ) : (
         <>
-          <span style={{ color: '#fff', fontWeight: 800, fontSize: 15 }}>🎉 $FEED is LIVE on PumpFun!</span>
+          <span style={{ color: '#fff', fontWeight: 800, fontSize: 15 }}>🎉 $PETANA is LIVE on PumpFun!</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: 12 }}>CA:</span>
             <span style={{ color: '#FFD426', fontWeight: 700, fontSize: 12, fontFamily: 'monospace' }}>TBA</span>

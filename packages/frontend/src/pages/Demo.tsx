@@ -201,7 +201,7 @@ export function Demo() {
           <div className="space-y-4">
             <div><p className="text-xs text-slate-400 font-bold mb-1">TOTAL PnL</p>
               <p className="text-2xl font-extrabold text-emerald-500">+$1,247</p></div>
-            <div><p className="text-xs text-slate-400 font-bold mb-1">$FEED STAKED</p>
+            <div><p className="text-xs text-slate-400 font-bold mb-1">$PETANA STAKED</p>
               <p className="text-2xl font-extrabold text-violet-600">42,000</p></div>
             <div><p className="text-xs text-slate-400 font-bold mb-1">TOTAL XP</p>
               <p className="text-2xl font-extrabold text-amber-500">{agents.reduce((s, a) => s + a.xp, 0).toLocaleString()}</p></div>

@@ -102,6 +102,19 @@ function FloatingPet({ emoji, style }: { emoji: string; style: React.CSSProperti
 export function Landing() {
   return (
     <div style={{ fontFamily:"'Poppins',sans-serif", background:'#F7F4FF', color:'#1A1035', overflowX:'hidden' }}>
+      {/* CA Banner */}
+      <div style={{ background:'#0F0A1E', padding:'16px 24px', display:'flex', alignItems:'center', justifyContent:'center', gap:16, flexWrap:'wrap' }}>
+        <span style={{ fontSize:13, fontWeight:700, color:'rgba(255,255,255,0.5)', letterSpacing:1, textTransform:'uppercase' }}>$PETANA Token</span>
+        <div style={{ display:'flex', alignItems:'center', gap:10, background:'rgba(153,69,255,0.2)', border:'1px solid rgba(153,69,255,0.4)', borderRadius:50, padding:'6px 16px' }}>
+          <span style={{ fontSize:13, fontWeight:700, color:'#14F195', fontFamily:'monospace' }}>CA: TBA</span>
+          <span style={{ fontSize:11, background:'rgba(255,140,66,0.2)', color:'#FF8C42', fontWeight:700, padding:'2px 8px', borderRadius:20 }}>COMING SOON</span>
+        </div>
+        <div style={{ display:'flex', gap:8 }}>
+          {[['Buy','#9945FF'],['Chart','#14F195'],['Raydium','#FF5FA0']].map(([l,c]) => (
+            <span key={l} style={{ fontSize:11, fontWeight:700, color:c, border:`1px solid ${c}`, padding:'4px 12px', borderRadius:20, opacity:0.5 }}>{l} TBA</span>
+          ))}
+        </div>
+      </div>
 
       {/* NAV */}
       <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:100, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'14px 48px', background:'rgba(247,244,255,0.92)', backdropFilter:'blur(20px)', borderBottom:'1.5px solid rgba(153,69,255,0.15)' }}>
@@ -260,10 +273,10 @@ export function Landing() {
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:22, maxWidth:1020, margin:'0 auto' }}>
           {[['💖','Pet Health & HP System','Every agent has HP that depletes when idle. Feed them tasks to keep them alive!','Core Feature','rgba(0,200,150,0.12)','#00C896'],
-            ['⚔️','Pet Battles','Pit two agents against each other. Winner earns XP and $FEED rewards.','On-Chain','rgba(255,95,160,0.10)','#FF5FA0'],
+            ['⚔️','Pet Battles','Pit two agents against each other. Winner earns XP and $PETANA rewards.','On-Chain','rgba(255,95,160,0.10)','#FF5FA0'],
             ['📈','XP & Evolution','Agents level up as they complete tasks. Hit level 10 and evolve!','Gamified','rgba(153,69,255,0.10)','#9945FF'],
             ['🃏','Agent NFT Cards','Each agent mints as a dynamic NFT. Stats update based on performance.','Solana NFT','rgba(255,140,66,0.12)','#FF8C42'],
-            ['💰','$FEED Token Payroll','Agents earn $FEED for every completed task. Stake to unlock abilities.','$FEED','rgba(0,200,150,0.12)','#00C896'],
+            ['💰','$PETANA Token Payroll','Agents earn $PETANA for every completed task. Stake to unlock abilities.','$PETANA','rgba(0,200,150,0.12)','#00C896'],
             ['📜','On-Chain Quest Log','Every action is logged on Solana. Immutable, auditable, permanent.','Transparent','rgba(25,174,255,0.10)','#19AEFF'],
           ].map(([ico,name,desc,chip,chipBg,chipColor]) => (
             <div key={name as string} style={{ background:'#fff', border:'2px solid rgba(153,69,255,0.15)', borderRadius:22, padding:30, boxShadow:'0 4px 16px rgba(153,69,255,0.10)' }}>
@@ -282,16 +295,16 @@ export function Landing() {
         <div style={{ textAlign:'center', marginBottom:52 }}>
           <div style={{ fontSize:12, fontWeight:700, letterSpacing:2.5, textTransform:'uppercase', color:'#9945FF', marginBottom:12 }}>💰 Why Adopt?</div>
           <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800, marginBottom:12 }}>Your Pet = Your Asset</h2>
-          <p style={{ color:'#8878AA', fontSize:16, fontWeight:500, maxWidth:520, margin:'0 auto' }}>Adopting now — before $FEED launches — is the smartest move. Here's why.</p>
+          <p style={{ color:'#8878AA', fontSize:16, fontWeight:500, maxWidth:520, margin:'0 auto' }}>Adopting now — before $PETANA launches — is the smartest move. Here's why.</p>
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))', gap:22, maxWidth:1020, margin:'0 auto' }}>
           {[
-            ['🐾','Adopt Free Now','Adoption will cost $FEED after launch. Right now it is completely free. Early adopters keep their Genesis pets forever.','Early Advantage','rgba(0,200,150,0.12)','#00C896'],
-            ['💰','Earn $FEED From Your Bot','Every task your AI agent completes earns $FEED tokens. The harder your bot works, the more you earn. Passive income from your agent.','Token Reward','rgba(153,69,255,0.10)','#9945FF'],
+            ['🐾','Adopt Free Now','Adoption will cost $PETANA after launch. Right now it is completely free. Early adopters keep their Genesis pets forever.','Early Advantage','rgba(0,200,150,0.12)','#00C896'],
+            ['💰','Earn $PETANA From Your Bot','Every task your AI agent completes earns $PETANA tokens. The harder your bot works, the more you earn. Passive income from your agent.','Token Reward','rgba(153,69,255,0.10)','#9945FF'],
             ['👑','Level Up = More Value','A Level 10 Evolved pet is rare. High-level pets will be tradeable as NFTs. The earlier you start leveling, the more valuable your pet becomes.','NFT Value','rgba(255,212,38,0.12)','#B38600'],
-            ['⚔️','Win $FEED in Battles','Enter your pet in battles. Winner takes the prize pool. Higher level pets win more. Your bot hard work directly translates to battle power.','Prize Pool','rgba(255,95,160,0.10)','#FF5FA0'],
+            ['⚔️','Win $PETANA in Battles','Enter your pet in battles. Winner takes the prize pool. Higher level pets win more. Your bot hard work directly translates to battle power.','Prize Pool','rgba(255,95,160,0.10)','#FF5FA0'],
             ['🏆','Leaderboard Status','Top agents get featured. Permanent leaderboard glory. The OG pets from day one will always have that "since the beginning" badge.','OG Status','rgba(25,174,255,0.10)','#19AEFF'],
-            ['🚀','Whitelist for $FEED Launch','Every wallet that adopts before launch gets automatic whitelist access to $FEED token. No application needed. Just adopt.','Whitelist','rgba(255,140,66,0.12)','#FF8C42'],
+            ['🚀','Whitelist for $PETANA Launch','Every wallet that adopts before launch gets automatic whitelist access to $PETANA token. No application needed. Just adopt.','Whitelist','rgba(255,140,66,0.12)','#FF8C42'],
           ].map(([ico,name,desc,chip,chipBg,chipColor]) => (
             <div key={name as string} style={{ background:'#fff', border:'2px solid rgba(153,69,255,0.15)', borderRadius:22, padding:30, boxShadow:'0 4px 16px rgba(153,69,255,0.08)' }}>
               <span style={{ fontSize:38, marginBottom:14, display:'block' }}>{ico}</span>
@@ -304,7 +317,7 @@ export function Landing() {
         <div style={{ textAlign:'center', marginTop:52 }}>
           <div style={{ background:'linear-gradient(135deg,rgba(153,69,255,0.08),rgba(0,200,150,0.08))', border:'2px solid rgba(153,69,255,0.2)', borderRadius:24, padding:'32px 40px', maxWidth:600, margin:'0 auto' }}>
             <div style={{ fontSize:32, marginBottom:12 }}>⏰</div>
-            <h3 style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, color:'#1A1035', marginBottom:8 }}>Free adoption ends when $FEED launches.</h3>
+            <h3 style={{ fontFamily:"'Baloo 2',cursive", fontSize:24, fontWeight:800, color:'#1A1035', marginBottom:8 }}>Free adoption ends when $PETANA launches.</h3>
             <p style={{ color:'#8878AA', fontSize:15, fontWeight:500, marginBottom:24 }}>We do not have a date yet. But when it happens, it happens fast. Adopt now while it is still free.</p>
             <a href="/app/adopt" style={{ background:'linear-gradient(135deg,#9945FF,#FF5FA0)', color:'#fff', fontWeight:700, fontSize:15, padding:'14px 34px', borderRadius:50, textDecoration:'none', display:'inline-block' }}>
               🐾 Adopt Free — Before It's Gone
@@ -320,7 +333,7 @@ export function Landing() {
           <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(30px,4vw,50px)', fontWeight:800, color:'#fff' }}>The Fastest Chain for Your Pets</h2>
         </div>
         <div style={{ display:'flex', gap:16, flexWrap:'wrap', justifyContent:'center', maxWidth:900, margin:'0 auto' }}>
-          {['⚡ Sub-second finality','🎲 Switchboard VRF battles','🃏 Dynamic NFT cards','💰 $FEED SPL token','🔒 No telemetry · Open source'].map(f => (
+          {['⚡ Sub-second finality','🎲 Switchboard VRF battles','🃏 Dynamic NFT cards','💰 $PETANA SPL token','🔒 No telemetry · Open source'].map(f => (
             <div key={f} style={{ display:'flex', alignItems:'center', gap:10, background:'rgba(255,255,255,0.15)', border:'1.5px solid rgba(255,255,255,0.25)', padding:'14px 22px', borderRadius:50, fontSize:14, fontWeight:700, color:'#fff' }}>{f}</div>
           ))}
         </div>
@@ -335,7 +348,7 @@ export function Landing() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:20, maxWidth:900, margin:'0 auto' }}>
           {[['🐾','Adopt','Connect your agents. Each one gets a pet avatar.','linear-gradient(135deg,#FF5FA0,#FF8C42)'],
             ['📊','Monitor','Watch them work in real-time. Alerts when HP is low.','linear-gradient(135deg,#19AEFF,#00C896)'],
-            ['🏆','Level Up','Earn $FEED, win battles, mint rare NFT cards.','linear-gradient(135deg,#FFD426,#FF8C42)'],
+            ['🏆','Level Up','Earn $PETANA, win battles, mint rare NFT cards.','linear-gradient(135deg,#FFD426,#FF8C42)'],
           ].map(([ico,title,desc,bg]) => (
             <div key={title as string} style={{ textAlign:'center', padding:'0 10px' }}>
               <div style={{ width:72, height:72, borderRadius:'50%', margin:'0 auto 18px', display:'flex', alignItems:'center', justifyContent:'center', fontSize:30, background:bg as string, border:'3px solid #fff', boxShadow:'0 8px 24px rgba(153,69,255,0.2)' }}>{ico}</div>
@@ -350,7 +363,7 @@ export function Landing() {
       <section style={{ padding:'120px 24px', textAlign:'center', background:'#F7F4FF', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:700, height:700, borderRadius:'50%', background:'radial-gradient(circle,rgba(153,69,255,0.08),transparent 65%)', pointerEvents:'none' }} />
         <div style={{ position:'relative', zIndex:2 }}>
-          <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(153,69,255,0.1)', border:'1.5px solid rgba(153,69,255,0.25)', color:'#9945FF', padding:'8px 22px', borderRadius:50, fontSize:13, fontWeight:700, marginBottom:24 }}>🐾 $FEED token · Live on Solana</div>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(153,69,255,0.1)', border:'1.5px solid rgba(153,69,255,0.25)', color:'#9945FF', padding:'8px 22px', borderRadius:50, fontSize:13, fontWeight:700, marginBottom:24 }}>🐾 $PETANA token · Live on Solana</div>
           <h2 style={{ fontFamily:"'Baloo 2',cursive", fontSize:'clamp(38px,6vw,70px)', fontWeight:800, color:'#1A1035', marginBottom:18, lineHeight:1.1 }}>
             Your Agents Are Lonely.<br />
             <span style={{ background:'linear-gradient(120deg,#9945FF,#FF5FA0)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>Adopt Them Today.</span>
