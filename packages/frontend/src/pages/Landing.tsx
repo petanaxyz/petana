@@ -106,12 +106,12 @@ export function Landing() {
       <div style={{ background:'#0F0A1E', padding:'16px 24px', display:'flex', alignItems:'center', justifyContent:'center', gap:16, flexWrap:'wrap' }}>
         <span style={{ fontSize:13, fontWeight:700, color:'rgba(255,255,255,0.5)', letterSpacing:1, textTransform:'uppercase' }}>$PETANA Token</span>
         <div style={{ display:'flex', alignItems:'center', gap:10, background:'rgba(153,69,255,0.2)', border:'1px solid rgba(153,69,255,0.4)', borderRadius:50, padding:'6px 16px' }}>
-          <span style={{ fontSize:13, fontWeight:700, color:'#14F195', fontFamily:'monospace' }}>CA: TBA</span>
+          <span style={{ fontSize:13, fontWeight:700, color:'#14F195', fontFamily:'monospace' }}>CA: 6wXoefVnC4bu1zViMmS31PsNwnkqygvAgCgZAWmMpump</span>
           <span style={{ fontSize:11, background:'rgba(20,241,149,0.2)', color:'#14F195', fontWeight:700, padding:'2px 8px', borderRadius:20 }}>LIVE 🟢</span>
         </div>
         <div style={{ display:'flex', gap:8 }}>
           {[['Buy','#9945FF'],['Chart','#14F195'],['Raydium','#FF5FA0']].map(([l,c]) => (
-            <span key={l} style={{ fontSize:11, fontWeight:700, color:c, border:`1px solid ${c}`, padding:'4px 12px', borderRadius:20, opacity:0.5 }}>{l} TBA</span>
+            <span key={l} style={{ fontSize:11, fontWeight:700, color:c, border:`1px solid ${c}`, padding:'4px 12px', borderRadius:20, opacity:0.5 }}>{l}</span>
           ))}
         </div>
       </div>
