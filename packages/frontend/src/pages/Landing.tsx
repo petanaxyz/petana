@@ -107,7 +107,7 @@ export function Landing() {
         <span style={{ fontSize:13, fontWeight:700, color:'rgba(255,255,255,0.5)', letterSpacing:1, textTransform:'uppercase' }}>$PETANA Token</span>
         <div style={{ display:'flex', alignItems:'center', gap:10, background:'rgba(153,69,255,0.2)', border:'1px solid rgba(153,69,255,0.4)', borderRadius:50, padding:'6px 16px' }}>
           <span style={{ fontSize:13, fontWeight:700, color:'#14F195', fontFamily:'monospace' }}>CA: TBA</span>
-          <span style={{ fontSize:11, background:'rgba(255,140,66,0.2)', color:'#FF8C42', fontWeight:700, padding:'2px 8px', borderRadius:20 }}>COMING SOON</span>
+          <span style={{ fontSize:11, background:'rgba(20,241,149,0.2)', color:'#14F195', fontWeight:700, padding:'2px 8px', borderRadius:20 }}>LIVE 🟢</span>
         </div>
         <div style={{ display:'flex', gap:8 }}>
           {[['Buy','#9945FF'],['Chart','#14F195'],['Raydium','#FF5FA0']].map(([l,c]) => (
